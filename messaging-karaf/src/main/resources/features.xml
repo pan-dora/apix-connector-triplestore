@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" name="messaging-karaf-0.0.1">
+    <feature name="exts-connector-triplestore" version="${project.version}">
+        <details>Installs the triplestore indexing service</details>
+
+        <feature version="${camelVersionRange}">camel</feature>
+        <feature version="${camelVersionRange}">camel-blueprint</feature>
+        <feature version="${camelVersionRange}">camel-http4</feature>
+        <feature version="${fcrepoCamelVersionRange}">fcrepo-camel</feature>
+
+        <bundle>mvn:cool.pandora/exts-connector-triplestore/${project.version}</bundle>
+
+        <configfile finalname="/etc/cool.pandora.exts.connector.triplestore.cfg">mvn:cool.pandora/exts-connector-triplestore/${project.version}/cfg/configuration</configfile>
+    </feature>
+</features>

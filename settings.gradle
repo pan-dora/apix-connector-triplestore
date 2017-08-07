@@ -1,0 +1,6 @@
+rootProject.name = 'apix-connector-triplestore'
+include ':messaging-karaf'
+include ':exts-connector-triplestore'
+
+project(':messaging-karaf').projectDir = "$rootDir/messaging-karaf" as File
+project(':exts-connector-triplestore').projectDir = "$rootDir/exts-connector-triplestore" as File
