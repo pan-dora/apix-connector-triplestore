@@ -67,4 +67,4 @@ EXPOSE ${JOLOKIA_PORT}
 ENTRYPOINT [ "/entrypoint.sh" ]
 
 # Launch Karaf with no console, and debugging enabled by default.
-CMD [ "server", "debug" ]
+CMD [ "server"]

@@ -87,14 +87,14 @@ public class TriplestoreRouter extends RouteBuilder {
                         header(FCREPO_EVENT_TYPE).contains(DELETE)))
                 .to("direct:delete.triplestore")
                 .otherwise()
-                .to("seda:update.triplestore");
+                .to("direct:update.triplestore");
 
         /*
          * Handle re-index events.
          */
         from("{{triplestore.reindex.stream}}").routeId("AcrepoTriplestoreReindex")
                 .setHeader(FCREPO_NAMED_GRAPH).header(FCREPO_URI)
-                .to("seda:update.triplestore");
+                .to("direct:update.triplestore");
 
         /*
          * Remove the triples from a named graph.
@@ -111,7 +111,7 @@ public class TriplestoreRouter extends RouteBuilder {
         /*
          * Add or update the triples for a named graph.
          */
-        from("seda:update.triplestore?concurrentConsumers={{consumer.concurrency}}")
+        from("direct:update.triplestore")
                 .routeId("AcrepoTriplestoreUpdater")
                 .filter(not(in(tokenizePropertyPlaceholder(getContext(), "{{filter.containers}}",
                         ",").stream()
