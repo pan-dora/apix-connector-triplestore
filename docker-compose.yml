@@ -14,7 +14,7 @@ services:
       retries: 10
 
   apix:
-    image: pandorasystems/apix:0.2.2
+    image: pandorasystems/apix
     container_name: apix
     env_file: apix.env
     ports:
@@ -57,7 +57,7 @@ services:
       - fcrepo:localhost
 
   fcrepo:
-    image: pandorasystems/fcrepo:4.8.1
+    image: pandorasystems/fcrepo:4.8.0-SNAPSHOT
     container_name: fcrepo
     environment:
       CATALINA_OPTS: -Dfcrepo.home=/mnt/fcrepo-data -Dfcrepo.spring.configuration=file:/etc/spring/fcrepo-config.xml -Xss8M
@@ -70,7 +70,7 @@ services:
       - fcrepo-volume:/mnt/fcrepo-data
 
   fuseki:
-    image: pandorasystems/fuseki:2.4.4
+    image: pandorasystems/fuseki
     container_name: fuseki
     environment:
         CATALINA_OPTS: -Xmx8G -Xss8M
@@ -81,12 +81,6 @@ services:
 
 volumes:
   fcrepo-volume:
-    driver_opts:
-          type: none
-          device: /mnt/pandora-data/fcrepo-data
-          o: bind
+
   fuseki-volume:
-    driver_opts:
-          type: none
-          device: /mnt/pandora-data/fuseki
-          o: bind
+
